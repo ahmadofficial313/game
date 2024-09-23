@@ -33,7 +33,7 @@ const[ guessRound, setGuessRound]=useState([initialGuess])
 
 useEffect(()=>{
      if(currentGuess===userNumber){
-         gameOver();
+         gameOver(guessRound.length);
      } 
 },[currentGuess,userNumber,gameOver])
 useEffect(()=>{
