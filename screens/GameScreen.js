@@ -1,11 +1,11 @@
 
 import { View,StyleSheet, Alert ,Text, FlatList} from "react-native";
-import Title from '../components/Title'
-import NumberContainer from '../components/NumberContainer'
+import Title from '../components/ui/Title'
+import NumberContainer from '../components/Game/NumberContainer'
 import { useState, useEffect } from "react";
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "../components/ui/PrimaryButton";
 import Ionicons from '@expo/vector-icons/AntDesign';
-import GuessLogItem from "../components/GuessLogItem";
+import GuessLogItem from "../components/Game/GuessLogItem";
  //generate random
 // function generateRandomBetween(min,max, exclude){
     // let randomNumber= Math.floor(Math.random()*(max- min))+min;
