@@ -7,15 +7,26 @@ import PrimaryButton from "../components/PrimaryButton";
 import Ionicons from '@expo/vector-icons/AntDesign';
 import GuessLogItem from "../components/GuessLogItem";
  //generate random
-function generateRandomBetween(min,max, exclude){
-    let randomNumber= Math.floor(Math.random()*(max- min))+min;
-    if(randomNumber===exclude){
-        return generateRandomBetween(min, max, exclude);
-    }
-    else{
-    return randomNumber
-        } 
-}   
+// function generateRandomBetween(min,max, exclude){
+    // let randomNumber= Math.floor(Math.random()*(max- min))+min;
+    // if(randomNumber===exclude){
+    //     return generateRandomBetween(min, max, exclude);
+    // }
+    // else{
+    // return randomNumber
+    //     } 
+    function generateRandomBetween(min, max, exclude) {
+        let randomNumber;
+        do {
+          randomNumber = Math.floor(Math.random() * (max - min)) + min;
+        } while (randomNumber === exclude);  // Avoid recursion with a loop
+      
+        return randomNumber;
+      }
+      
+  
+  
+
 
 function GameScreen({userNumber, gameOver}){
    
@@ -90,12 +101,15 @@ function nextGuessHandler(direction){
         </View>
          <View style={{flex:1, padding:16}}>
       
-         {/* {guessRound.map(data => <Text key={data}>{data}</Text>)} */}
-         <FlatList data={guessRound}
-         scrollEnabled={true}
-          renderItem={(itemData)=> <GuessLogItem guess={itemData.item} roundeNumber={gueesRoundLength - itemData.index}/>}
-          keyExtractor={(item)=> item}
-         />
+     
+         <FlatList
+                data={guessRound}
+                renderItem={(itemData) => (
+                    <GuessLogItem guess={itemData.item} roundeNumber={gueesRoundLength - itemData.index} />
+                )}
+                keyExtractor={(item, index) => item + '-' + index} // Ensure a unique key by combining the value with the index
+                />
+
           </View>
           </>
     )
@@ -106,6 +120,7 @@ export default GameScreen;
 const styles=StyleSheet.create({
 gameContainer:{
     padding:16,
+    marginTop:30
    
 
 },
@@ -114,7 +129,7 @@ title:{
     fontWeight:'bold',
     color:'#FFBE98',
     textAlign:'center',
-    borderWidth:1,
+
 
     borderColor:'#FFBE98' ,
     padding:12
@@ -134,7 +149,7 @@ text2:{
        color:'white',
        paddingVertical:7,
        color:'#C96868',
-       borderWidth:'none',
+       borderColor:'#C96868',
        fontFamily:"open-sans"
 
     },
