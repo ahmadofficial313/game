@@ -16,7 +16,7 @@ const styles=StyleSheet.create({
         borderWidth:1,
         borderRadius:40,
         padding:12,
-        marginVertical:8,
+        marginVertical:10,
         borderColor:'#FFBE98' ,
         flexDirection:'row',
         justifyContent:'space-between',
