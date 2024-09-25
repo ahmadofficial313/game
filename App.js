@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import GameOverScreen from './screens/GameOverScreen';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 
 // Prevent the splash screen from hiding automatically
 SplashScreen.preventAutoHideAsync();
@@ -54,6 +55,8 @@ export default function App() {
   }
 
   return (
+    <>
+    <StatusBar style='light'/>
     <LinearGradient colors={['#C96868', '#FFBE98']} style={styles.rootScreen}>
       <ImageBackground
         source={require('./assets/images/bg.jpg')}
@@ -64,6 +67,7 @@ export default function App() {
         <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
       </ImageBackground>
     </LinearGradient>
+    </>
   );
 }
 

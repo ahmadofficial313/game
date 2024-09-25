@@ -1,11 +1,34 @@
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image,ScrollView, useWindowDimensions } from "react-native";
+import { useState, useEffect } from "react";
 import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 function GameOverScreen({roundsNumber, userNumber, onStartGame}){
+    const { width, height } = useWindowDimensions();
+    const [imageSize, setImageSize] = useState(300);
+
+    useEffect(() => {
+        let newSize = 300; 
+        if (width < 380) {
+            newSize = 280;
+        }
+        if (height < 400) {
+            newSize = 100;
+        }
+        setImageSize(newSize);
+    }, [width, height]);
+
+    const imageStyle = {
+        width: imageSize,
+        height: imageSize,
+        borderRadius: imageSize / 2,
+    };
+
+
     return(
+ <ScrollView style={{flex:1}}>
     <View style={styles.rootScreen}>
     <Title>Game Over</Title>
-    <View style={styles.imageContainer }>
+    <View style={[styles.imageContainer, imageStyle] }>
     <Image style={styles.image} source={require('../assets/images/success.png')} />
     </View>
     <Text style={styles.gameOverText}>Your phone needed <Text style={styles.highlight}>{roundsNumber} </Text>
@@ -14,9 +37,12 @@ function GameOverScreen({roundsNumber, userNumber, onStartGame}){
       </Text>
       <PrimaryButton onPress={onStartGame}>Start New Game</PrimaryButton>
     </View>
+    </ScrollView>
     )
 }
 export default GameOverScreen
+// const deviceWidth=Dimensions.get('window').width 
+
 const styles=StyleSheet.create({
     rootScreen:{
         padding:26,
@@ -26,13 +52,13 @@ const styles=StyleSheet.create({
        
     },
     imageContainer:{
-        width:300,
-        height:300,
-        borderRadius:200,
+        // width:deviceWidth <380 ? 200: 300,
+        // height:deviceWidth <380 ? 200: 300,
+        // borderRadius:deviceWidth <380 ? 100: 200,
         borderWidth:3,
         borderColor:'black',
         overflow:'hidden',
-        margin:36
+        margin:20
     },
     image:{
         height:'100%',
