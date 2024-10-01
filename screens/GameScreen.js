@@ -60,7 +60,8 @@ function nextGuessHandler(direction){
         (direction==='lower' && currentGuess< userNumber) ||
         (direction==='greater' && currentGuess> userNumber)
     ){
-       Alert.alert("Don't lie","You know this is wrong",[{text:'Sorry', style:'cancel'},]) 
+       Alert.alert("Don't lie","You know this is wrong",[{text:'Sorry', style:'cancel'},])
+       return 
     }
     if(direction==='lower'){
        maxBoundary=currentGuess;
